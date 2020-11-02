@@ -7,6 +7,7 @@ require (
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/coreos/etcd v3.3.10+incompatible // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/go-openapi/spec v0.19.3
 	github.com/google/gofuzz v1.1.0
 	github.com/gophercloud/gophercloud v0.0.0-20190126172459-c818fa66e4c8 // indirect
 	github.com/imdario/mergo v0.3.5 // indirect
@@ -14,7 +15,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/pborman/uuid v0.0.0-20150603214016-ca53cad383ca // indirect
-	github.com/programming-kubernetes/pizza-apiserver v0.0.0-20190505144740-d86c41ae03db
+	github.com/mchirico/pizza-apiserver v0.0.0-20190505144740-d86c41ae03db
 	github.com/spf13/cobra v0.0.4
 	gonum.org/v1/gonum v0.0.0-20190413104459-5d695651a1d5 // indirect
 	k8s.io/apimachinery v0.19.3
@@ -23,6 +24,7 @@ require (
 	k8s.io/code-generator v0.19.3
 	k8s.io/component-base v0.0.0-20201020201314-b8c7ac1518d8
 	k8s.io/klog v0.2.1-0.20190306015804-8e90cee79f82
+	k8s.io/kube-openapi v0.0.0-20200923155610-8b5066479488
 	k8s.io/sample-controller v0.19.3 // indirect
 	sigs.k8s.io/structured-merge-diff v0.0.0-20190302045857-e85c7b244fd2 // indirect
 )

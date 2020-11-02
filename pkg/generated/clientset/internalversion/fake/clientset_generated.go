@@ -19,9 +19,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion"
-	restaurantinternalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion"
-	fakerestaurantinternalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion/fake"
+	clientset "github.com/mchirico/pizza-apiserver/pkg/generated/clientset/internalversion"
+	restaurantinternalversion "github.com/mchirico/pizza-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion"
+	fakerestaurantinternalversion "github.com/mchirico/pizza-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"

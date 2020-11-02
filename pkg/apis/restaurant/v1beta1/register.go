@@ -23,7 +23,7 @@ import (
 )
 
 // GroupName holds the API group name.
-const GroupName = "restaurant.programming-kubernetes.info"
+const GroupName = "restaurant.mchirico.info"
 
 // SchemeGroupVersion is group version used to register these objects
 var SchemeGroupVersion = schema.GroupVersion{Group: GroupName, Version: "v1beta1"}
