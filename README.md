@@ -38,7 +38,8 @@ kubectl exec --stdin --tty pizza-apiserver-6886ff4688-wtp9k -c etcd  -- /bin/sh
 
 
 kubectl exec --stdin --tty pizza-apiserver-6886ff4688-wtp9k -c apiserver  -- /bin/bash
-yum update
+yum update -y
+yum install etcd -y
 
 ```
 
