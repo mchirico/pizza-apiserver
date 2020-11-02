@@ -18,7 +18,7 @@ spec:
       serviceAccountName: apiserver
       containers:
       - name: apiserver
-        image: quay.io/programming-kubernetes/pizza-apiserver:latest
+        image: quay.io/mchirico/pizza-apiserver:latest
         imagePullPolicy: Always
         command: ["/pizza-apiserver"]
         args:
