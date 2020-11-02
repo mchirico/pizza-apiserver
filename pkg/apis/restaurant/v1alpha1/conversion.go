@@ -23,7 +23,9 @@ import (
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {
-	err := scheme.AddConversionFuncs(
+
+	
+	err := scheme.AddConversionFunc(
 		Convert_v1alpha1_PizzaSpec_To_restaurant_PizzaSpec,
 		Convert_restaurant_PizzaSpec_To_v1alpha1_PizzaSpec,
 	)

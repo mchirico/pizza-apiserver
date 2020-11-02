@@ -6,8 +6,7 @@ require (
 	github.com/go-openapi/spec v0.19.3
 	github.com/google/gofuzz v1.1.0
 	github.com/spf13/cobra v0.0.4
-	k8s.io/api v0.19.3 // indirect
-	k8s.io/apimachinery v0.19.3
+	k8s.io/apimachinery v0.0.0-20201020200440-554eef9dbf66
 	k8s.io/apiserver v0.0.0-20190409021813-1ec86e4da56c
 	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
 	k8s.io/code-generator v0.19.3
