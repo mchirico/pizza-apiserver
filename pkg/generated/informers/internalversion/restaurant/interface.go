@@ -19,8 +19,8 @@ limitations under the License.
 package restaurant
 
 import (
-	internalinterfaces "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
-	internalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/restaurant/internalversion"
+	internalinterfaces "github.com/mchirico/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
+	internalversion "github.com/mchirico/pizza-apiserver/pkg/generated/informers/internalversion/restaurant/internalversion"
 )
 
 // Interface provides access to each of this group's versions.

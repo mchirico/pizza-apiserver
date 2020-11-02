@@ -19,12 +19,13 @@ limitations under the License.
 package internalversion
 
 import (
+	"context"
 	time "time"
 
+	clientsetinternalversion "github.com/mchirico/pizza-apiserver/pkg/generated/clientset/internalversion"
+	internalinterfaces "github.com/mchirico/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
+	internalversion "github.com/mchirico/pizza-apiserver/pkg/generated/listers/restaurant/internalversion"
 	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
-	clientsetinternalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion"
-	internalinterfaces "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
-	internalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/listers/restaurant/internalversion"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -60,13 +61,13 @@ func NewFilteredToppingInformer(client clientsetinternalversion.Interface, resyn
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.Restaurant().Toppings().List(options)
+				return client.Restaurant().Toppings().List(context.TODO(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.Restaurant().Toppings().Watch(options)
+				return client.Restaurant().Toppings().Watch(context.TODO(), options)
 			},
 		},
 		&restaurant.Topping{},

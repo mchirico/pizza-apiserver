@@ -19,8 +19,8 @@ limitations under the License.
 package fake
 
 import (
-	restaurantv1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
-	restaurantv1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1beta1"
+	restaurantv1alpha1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	restaurantv1beta1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1beta1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -30,7 +30,7 @@ import (
 
 var scheme = runtime.NewScheme()
 var codecs = serializer.NewCodecFactory(scheme)
-var parameterCodec = runtime.NewParameterCodec(scheme)
+
 var localSchemeBuilder = runtime.SchemeBuilder{
 	restaurantv1alpha1.AddToScheme,
 	restaurantv1beta1.AddToScheme,

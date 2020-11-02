@@ -19,10 +19,11 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"context"
 	"time"
 
-	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
-	scheme "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/scheme"
+	v1alpha1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	scheme "github.com/mchirico/pizza-apiserver/pkg/generated/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -37,14 +38,14 @@ type ToppingsGetter interface {
 
 // ToppingInterface has methods to work with Topping resources.
 type ToppingInterface interface {
-	Create(*v1alpha1.Topping) (*v1alpha1.Topping, error)
-	Update(*v1alpha1.Topping) (*v1alpha1.Topping, error)
-	Delete(name string, options *v1.DeleteOptions) error
-	DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error
-	Get(name string, options v1.GetOptions) (*v1alpha1.Topping, error)
-	List(opts v1.ListOptions) (*v1alpha1.ToppingList, error)
-	Watch(opts v1.ListOptions) (watch.Interface, error)
-	Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1alpha1.Topping, err error)
+	Create(ctx context.Context, topping *v1alpha1.Topping, opts v1.CreateOptions) (*v1alpha1.Topping, error)
+	Update(ctx context.Context, topping *v1alpha1.Topping, opts v1.UpdateOptions) (*v1alpha1.Topping, error)
+	Delete(ctx context.Context, name string, opts v1.DeleteOptions) error
+	DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error
+	Get(ctx context.Context, name string, opts v1.GetOptions) (*v1alpha1.Topping, error)
+	List(ctx context.Context, opts v1.ListOptions) (*v1alpha1.ToppingList, error)
+	Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error)
+	Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.Topping, err error)
 	ToppingExpansion
 }
 
@@ -61,19 +62,19 @@ func newToppings(c *RestaurantV1alpha1Client) *toppings {
 }
 
 // Get takes name of the topping, and returns the corresponding topping object, and an error if there is any.
-func (c *toppings) Get(name string, options v1.GetOptions) (result *v1alpha1.Topping, err error) {
+func (c *toppings) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.Topping, err error) {
 	result = &v1alpha1.Topping{}
 	err = c.client.Get().
 		Resource("toppings").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do().
+		Do(ctx).
 		Into(result)
 	return
 }
 
 // List takes label and field selectors, and returns the list of Toppings that match those selectors.
-func (c *toppings) List(opts v1.ListOptions) (result *v1alpha1.ToppingList, err error) {
+func (c *toppings) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.ToppingList, err error) {
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -83,13 +84,13 @@ func (c *toppings) List(opts v1.ListOptions) (result *v1alpha1.ToppingList, err 
 		Resource("toppings").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do().
+		Do(ctx).
 		Into(result)
 	return
 }
 
 // Watch returns a watch.Interface that watches the requested toppings.
-func (c *toppings) Watch(opts v1.ListOptions) (watch.Interface, error) {
+func (c *toppings) Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error) {
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -99,66 +100,69 @@ func (c *toppings) Watch(opts v1.ListOptions) (watch.Interface, error) {
 		Resource("toppings").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Watch()
+		Watch(ctx)
 }
 
 // Create takes the representation of a topping and creates it.  Returns the server's representation of the topping, and an error, if there is any.
-func (c *toppings) Create(topping *v1alpha1.Topping) (result *v1alpha1.Topping, err error) {
+func (c *toppings) Create(ctx context.Context, topping *v1alpha1.Topping, opts v1.CreateOptions) (result *v1alpha1.Topping, err error) {
 	result = &v1alpha1.Topping{}
 	err = c.client.Post().
 		Resource("toppings").
+		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(topping).
-		Do().
+		Do(ctx).
 		Into(result)
 	return
 }
 
 // Update takes the representation of a topping and updates it. Returns the server's representation of the topping, and an error, if there is any.
-func (c *toppings) Update(topping *v1alpha1.Topping) (result *v1alpha1.Topping, err error) {
+func (c *toppings) Update(ctx context.Context, topping *v1alpha1.Topping, opts v1.UpdateOptions) (result *v1alpha1.Topping, err error) {
 	result = &v1alpha1.Topping{}
 	err = c.client.Put().
 		Resource("toppings").
 		Name(topping.Name).
+		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(topping).
-		Do().
+		Do(ctx).
 		Into(result)
 	return
 }
 
 // Delete takes name of the topping and deletes it. Returns an error if one occurs.
-func (c *toppings) Delete(name string, options *v1.DeleteOptions) error {
+func (c *toppings) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	return c.client.Delete().
 		Resource("toppings").
 		Name(name).
-		Body(options).
-		Do().
+		Body(&opts).
+		Do(ctx).
 		Error()
 }
 
 // DeleteCollection deletes a collection of objects.
-func (c *toppings) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+func (c *toppings) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
 	var timeout time.Duration
-	if listOptions.TimeoutSeconds != nil {
-		timeout = time.Duration(*listOptions.TimeoutSeconds) * time.Second
+	if listOpts.TimeoutSeconds != nil {
+		timeout = time.Duration(*listOpts.TimeoutSeconds) * time.Second
 	}
 	return c.client.Delete().
 		Resource("toppings").
-		VersionedParams(&listOptions, scheme.ParameterCodec).
+		VersionedParams(&listOpts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Body(options).
-		Do().
+		Body(&opts).
+		Do(ctx).
 		Error()
 }
 
 // Patch applies the patch and returns the patched topping.
-func (c *toppings) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1alpha1.Topping, err error) {
+func (c *toppings) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.Topping, err error) {
 	result = &v1alpha1.Topping{}
 	err = c.client.Patch(pt).
 		Resource("toppings").
-		SubResource(subresources...).
 		Name(name).
+		SubResource(subresources...).
+		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(data).
-		Do().
+		Do(ctx).
 		Into(result)
 	return
 }

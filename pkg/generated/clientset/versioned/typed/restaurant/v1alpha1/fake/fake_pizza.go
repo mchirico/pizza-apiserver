@@ -19,7 +19,9 @@ limitations under the License.
 package fake
 
 import (
-	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	"context"
+
+	v1alpha1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -39,7 +41,7 @@ var pizzasResource = schema.GroupVersionResource{Group: "restaurant.programming-
 var pizzasKind = schema.GroupVersionKind{Group: "restaurant.programming-kubernetes.info", Version: "v1alpha1", Kind: "Pizza"}
 
 // Get takes name of the pizza, and returns the corresponding pizza object, and an error if there is any.
-func (c *FakePizzas) Get(name string, options v1.GetOptions) (result *v1alpha1.Pizza, err error) {
+func (c *FakePizzas) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.Pizza, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewGetAction(pizzasResource, c.ns, name), &v1alpha1.Pizza{})
 
@@ -50,7 +52,7 @@ func (c *FakePizzas) Get(name string, options v1.GetOptions) (result *v1alpha1.P
 }
 
 // List takes label and field selectors, and returns the list of Pizzas that match those selectors.
-func (c *FakePizzas) List(opts v1.ListOptions) (result *v1alpha1.PizzaList, err error) {
+func (c *FakePizzas) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.PizzaList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(pizzasResource, pizzasKind, c.ns, opts), &v1alpha1.PizzaList{})
 
@@ -72,14 +74,14 @@ func (c *FakePizzas) List(opts v1.ListOptions) (result *v1alpha1.PizzaList, err 
 }
 
 // Watch returns a watch.Interface that watches the requested pizzas.
-func (c *FakePizzas) Watch(opts v1.ListOptions) (watch.Interface, error) {
+func (c *FakePizzas) Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(pizzasResource, c.ns, opts))
 
 }
 
 // Create takes the representation of a pizza and creates it.  Returns the server's representation of the pizza, and an error, if there is any.
-func (c *FakePizzas) Create(pizza *v1alpha1.Pizza) (result *v1alpha1.Pizza, err error) {
+func (c *FakePizzas) Create(ctx context.Context, pizza *v1alpha1.Pizza, opts v1.CreateOptions) (result *v1alpha1.Pizza, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewCreateAction(pizzasResource, c.ns, pizza), &v1alpha1.Pizza{})
 
@@ -90,7 +92,7 @@ func (c *FakePizzas) Create(pizza *v1alpha1.Pizza) (result *v1alpha1.Pizza, err 
 }
 
 // Update takes the representation of a pizza and updates it. Returns the server's representation of the pizza, and an error, if there is any.
-func (c *FakePizzas) Update(pizza *v1alpha1.Pizza) (result *v1alpha1.Pizza, err error) {
+func (c *FakePizzas) Update(ctx context.Context, pizza *v1alpha1.Pizza, opts v1.UpdateOptions) (result *v1alpha1.Pizza, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewUpdateAction(pizzasResource, c.ns, pizza), &v1alpha1.Pizza{})
 
@@ -102,7 +104,7 @@ func (c *FakePizzas) Update(pizza *v1alpha1.Pizza) (result *v1alpha1.Pizza, err 
 
 // UpdateStatus was generated because the type contains a Status member.
 // Add a +genclient:noStatus comment above the type to avoid generating UpdateStatus().
-func (c *FakePizzas) UpdateStatus(pizza *v1alpha1.Pizza) (*v1alpha1.Pizza, error) {
+func (c *FakePizzas) UpdateStatus(ctx context.Context, pizza *v1alpha1.Pizza, opts v1.UpdateOptions) (*v1alpha1.Pizza, error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewUpdateSubresourceAction(pizzasResource, "status", c.ns, pizza), &v1alpha1.Pizza{})
 
@@ -113,7 +115,7 @@ func (c *FakePizzas) UpdateStatus(pizza *v1alpha1.Pizza) (*v1alpha1.Pizza, error
 }
 
 // Delete takes name of the pizza and deletes it. Returns an error if one occurs.
-func (c *FakePizzas) Delete(name string, options *v1.DeleteOptions) error {
+func (c *FakePizzas) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(pizzasResource, c.ns, name), &v1alpha1.Pizza{})
 
@@ -121,15 +123,15 @@ func (c *FakePizzas) Delete(name string, options *v1.DeleteOptions) error {
 }
 
 // DeleteCollection deletes a collection of objects.
-func (c *FakePizzas) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
-	action := testing.NewDeleteCollectionAction(pizzasResource, c.ns, listOptions)
+func (c *FakePizzas) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
+	action := testing.NewDeleteCollectionAction(pizzasResource, c.ns, listOpts)
 
 	_, err := c.Fake.Invokes(action, &v1alpha1.PizzaList{})
 	return err
 }
 
 // Patch applies the patch and returns the patched pizza.
-func (c *FakePizzas) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1alpha1.Pizza, err error) {
+func (c *FakePizzas) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.Pizza, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewPatchSubresourceAction(pizzasResource, c.ns, name, pt, data, subresources...), &v1alpha1.Pizza{})
 
