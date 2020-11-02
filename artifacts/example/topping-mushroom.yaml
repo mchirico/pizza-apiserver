@@ -4,4 +4,5 @@ metadata:
   name: mushroom
 spec:
   cost: 3.45
+  purchasedate: "2020-11-02 17:04:08.389288 -0500 EST m=+0.000142901"
 
