@@ -40,6 +40,10 @@ kubectl exec --stdin --tty pizza-apiserver-6886ff4688-wtp9k -c etcd  -- /bin/sh
 kubectl exec --stdin --tty pizza-apiserver-6886ff4688-wtp9k -c apiserver  -- /bin/bash
 yum update -y
 yum install etcd -y
+yum install -y procps
+# If you need everything...
+yum group install "Development Tools" -y
+
 
 ```
 
