@@ -15,7 +15,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/pborman/uuid v0.0.0-20150603214016-ca53cad383ca // indirect
-	github.com/mchirico/pizza-apiserver v0.0.0-20190505144740-d86c41ae03db
+	github.com/mchirico/pizza-apiserver v0.0.1
 	github.com/spf13/cobra v0.0.4
 	gonum.org/v1/gonum v0.0.0-20190413104459-5d695651a1d5 // indirect
 	k8s.io/apimachinery v0.19.3
