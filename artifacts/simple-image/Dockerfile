@@ -1,3 +1,3 @@
 FROM fedora
-ADD pizza-apiserver
+ADD pizza-apiserver /
 ENTRYPOINT ["/pizza-apiserver"]
