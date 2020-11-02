@@ -41,14 +41,13 @@ type PizzaTopping struct {
 	// quantity is the number of how often the topping is put onto the pizza.
 	Quantity int
 	// date topping was purchased
-	DatePurchased string
-	// spoil date
-	SpoilDate string
+
 }
 
 type PizzaStatus struct {
 	// cost is the cost of the whole pizza including all toppings.
 	Cost float64
+	PurchaseDate string
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -76,6 +75,8 @@ type Topping struct {
 type ToppingSpec struct {
 	// cost is the cost of one instance of this topping.
 	Cost float64
+	PurchaseDate string
+
 }
 
 // +genclient:nonNamespaced

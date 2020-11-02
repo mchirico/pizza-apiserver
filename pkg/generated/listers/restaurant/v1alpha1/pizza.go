@@ -26,8 +26,10 @@ import (
 )
 
 // PizzaLister helps list Pizzas.
+// All objects returned here must be treated as read-only.
 type PizzaLister interface {
 	// List lists all Pizzas in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1alpha1.Pizza, err error)
 	// Pizzas returns an object that can list and get Pizzas.
 	Pizzas(namespace string) PizzaNamespaceLister
@@ -58,10 +60,13 @@ func (s *pizzaLister) Pizzas(namespace string) PizzaNamespaceLister {
 }
 
 // PizzaNamespaceLister helps list and get Pizzas.
+// All objects returned here must be treated as read-only.
 type PizzaNamespaceLister interface {
 	// List lists all Pizzas in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1alpha1.Pizza, err error)
 	// Get retrieves the Pizza from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1alpha1.Pizza, error)
 	PizzaNamespaceListerExpansion
 }

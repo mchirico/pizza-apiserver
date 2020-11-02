@@ -4,3 +4,4 @@ metadata:
   name: anchovies
 spec:
   cost: 2.34
+  purchasedate: "now"

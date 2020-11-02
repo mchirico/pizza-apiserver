@@ -19,6 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
+	"context"
 	time "time"
 
 	restaurant "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant"
@@ -61,13 +62,13 @@ func NewFilteredPizzaInformer(client clientsetinternalversion.Interface, namespa
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.Restaurant().Pizzas(namespace).List(options)
+				return client.Restaurant().Pizzas(namespace).List(context.TODO(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.Restaurant().Pizzas(namespace).Watch(options)
+				return client.Restaurant().Pizzas(namespace).Watch(context.TODO(), options)
 			},
 		},
 		&restaurant.Pizza{},

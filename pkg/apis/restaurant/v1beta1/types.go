@@ -46,6 +46,9 @@ type PizzaTopping struct {
 type PizzaStatus struct {
 	// cost is the cost of the whole pizza including all toppings.
 	Cost float64 `json:"cost,omitempty" protobuf:"bytes,1,opt,name=cost"`
+	PurchaseDate string `json:"purchasedate,omitempty" protobuf:"bytes,2,opt,name=purchasedate"`
+
+
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

@@ -164,6 +164,7 @@ func Convert_restaurant_PizzaSpec_To_v1beta1_PizzaSpec(in *restaurant.PizzaSpec,
 
 func autoConvert_v1beta1_PizzaStatus_To_restaurant_PizzaStatus(in *PizzaStatus, out *restaurant.PizzaStatus, s conversion.Scope) error {
 	out.Cost = in.Cost
+	out.PurchaseDate = in.PurchaseDate
 	return nil
 }
 
@@ -174,6 +175,7 @@ func Convert_v1beta1_PizzaStatus_To_restaurant_PizzaStatus(in *PizzaStatus, out 
 
 func autoConvert_restaurant_PizzaStatus_To_v1beta1_PizzaStatus(in *restaurant.PizzaStatus, out *PizzaStatus, s conversion.Scope) error {
 	out.Cost = in.Cost
+	out.PurchaseDate = in.PurchaseDate
 	return nil
 }
 

@@ -26,10 +26,13 @@ import (
 )
 
 // ToppingLister helps list Toppings.
+// All objects returned here must be treated as read-only.
 type ToppingLister interface {
 	// List lists all Toppings in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*restaurant.Topping, err error)
 	// Get retrieves the Topping from the index for a given name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*restaurant.Topping, error)
 	ToppingListerExpansion
 }

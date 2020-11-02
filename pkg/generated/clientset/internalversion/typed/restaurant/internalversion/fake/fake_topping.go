@@ -19,6 +19,8 @@ limitations under the License.
 package fake
 
 import (
+	"context"
+
 	restaurant "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
@@ -38,7 +40,7 @@ var toppingsResource = schema.GroupVersionResource{Group: "restaurant.mchirico.i
 var toppingsKind = schema.GroupVersionKind{Group: "restaurant.mchirico.info", Version: "", Kind: "Topping"}
 
 // Get takes name of the topping, and returns the corresponding topping object, and an error if there is any.
-func (c *FakeToppings) Get(name string, options v1.GetOptions) (result *restaurant.Topping, err error) {
+func (c *FakeToppings) Get(ctx context.Context, name string, options v1.GetOptions) (result *restaurant.Topping, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootGetAction(toppingsResource, name), &restaurant.Topping{})
 	if obj == nil {
@@ -48,7 +50,7 @@ func (c *FakeToppings) Get(name string, options v1.GetOptions) (result *restaura
 }
 
 // List takes label and field selectors, and returns the list of Toppings that match those selectors.
-func (c *FakeToppings) List(opts v1.ListOptions) (result *restaurant.ToppingList, err error) {
+func (c *FakeToppings) List(ctx context.Context, opts v1.ListOptions) (result *restaurant.ToppingList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootListAction(toppingsResource, toppingsKind, opts), &restaurant.ToppingList{})
 	if obj == nil {
@@ -69,13 +71,13 @@ func (c *FakeToppings) List(opts v1.ListOptions) (result *restaurant.ToppingList
 }
 
 // Watch returns a watch.Interface that watches the requested toppings.
-func (c *FakeToppings) Watch(opts v1.ListOptions) (watch.Interface, error) {
+func (c *FakeToppings) Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewRootWatchAction(toppingsResource, opts))
 }
 
 // Create takes the representation of a topping and creates it.  Returns the server's representation of the topping, and an error, if there is any.
-func (c *FakeToppings) Create(topping *restaurant.Topping) (result *restaurant.Topping, err error) {
+func (c *FakeToppings) Create(ctx context.Context, topping *restaurant.Topping, opts v1.CreateOptions) (result *restaurant.Topping, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootCreateAction(toppingsResource, topping), &restaurant.Topping{})
 	if obj == nil {
@@ -85,7 +87,7 @@ func (c *FakeToppings) Create(topping *restaurant.Topping) (result *restaurant.T
 }
 
 // Update takes the representation of a topping and updates it. Returns the server's representation of the topping, and an error, if there is any.
-func (c *FakeToppings) Update(topping *restaurant.Topping) (result *restaurant.Topping, err error) {
+func (c *FakeToppings) Update(ctx context.Context, topping *restaurant.Topping, opts v1.UpdateOptions) (result *restaurant.Topping, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootUpdateAction(toppingsResource, topping), &restaurant.Topping{})
 	if obj == nil {
@@ -95,22 +97,22 @@ func (c *FakeToppings) Update(topping *restaurant.Topping) (result *restaurant.T
 }
 
 // Delete takes name of the topping and deletes it. Returns an error if one occurs.
-func (c *FakeToppings) Delete(name string, options *v1.DeleteOptions) error {
+func (c *FakeToppings) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewRootDeleteAction(toppingsResource, name), &restaurant.Topping{})
 	return err
 }
 
 // DeleteCollection deletes a collection of objects.
-func (c *FakeToppings) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
-	action := testing.NewRootDeleteCollectionAction(toppingsResource, listOptions)
+func (c *FakeToppings) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
+	action := testing.NewRootDeleteCollectionAction(toppingsResource, listOpts)
 
 	_, err := c.Fake.Invokes(action, &restaurant.ToppingList{})
 	return err
 }
 
 // Patch applies the patch and returns the patched topping.
-func (c *FakeToppings) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *restaurant.Topping, err error) {
+func (c *FakeToppings) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *restaurant.Topping, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootPatchSubresourceAction(toppingsResource, name, pt, data, subresources...), &restaurant.Topping{})
 	if obj == nil {

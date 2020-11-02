@@ -55,16 +55,6 @@ func RegisterConversions(s *runtime.Scheme) error {
 	}); err != nil {
 		return err
 	}
-	if err := s.AddGeneratedConversionFunc((*PizzaSpec)(nil), (*restaurant.PizzaSpec)(nil), func(a, b interface{}, scope conversion.Scope) error {
-		return Convert_v1alpha1_PizzaSpec_To_restaurant_PizzaSpec(a.(*PizzaSpec), b.(*restaurant.PizzaSpec), scope)
-	}); err != nil {
-		return err
-	}
-	if err := s.AddGeneratedConversionFunc((*restaurant.PizzaSpec)(nil), (*PizzaSpec)(nil), func(a, b interface{}, scope conversion.Scope) error {
-		return Convert_restaurant_PizzaSpec_To_v1alpha1_PizzaSpec(a.(*restaurant.PizzaSpec), b.(*PizzaSpec), scope)
-	}); err != nil {
-		return err
-	}
 	if err := s.AddGeneratedConversionFunc((*PizzaStatus)(nil), (*restaurant.PizzaStatus)(nil), func(a, b interface{}, scope conversion.Scope) error {
 		return Convert_v1alpha1_PizzaStatus_To_restaurant_PizzaStatus(a.(*PizzaStatus), b.(*restaurant.PizzaStatus), scope)
 	}); err != nil {
@@ -215,6 +205,7 @@ func autoConvert_restaurant_PizzaSpec_To_v1alpha1_PizzaSpec(in *restaurant.Pizza
 
 func autoConvert_v1alpha1_PizzaStatus_To_restaurant_PizzaStatus(in *PizzaStatus, out *restaurant.PizzaStatus, s conversion.Scope) error {
 	out.Cost = in.Cost
+	out.PurchaseDate = in.PurchaseDate
 	return nil
 }
 
@@ -225,6 +216,7 @@ func Convert_v1alpha1_PizzaStatus_To_restaurant_PizzaStatus(in *PizzaStatus, out
 
 func autoConvert_restaurant_PizzaStatus_To_v1alpha1_PizzaStatus(in *restaurant.PizzaStatus, out *PizzaStatus, s conversion.Scope) error {
 	out.Cost = in.Cost
+	out.PurchaseDate = in.PurchaseDate
 	return nil
 }
 
@@ -283,6 +275,7 @@ func Convert_restaurant_ToppingList_To_v1alpha1_ToppingList(in *restaurant.Toppi
 
 func autoConvert_v1alpha1_ToppingSpec_To_restaurant_ToppingSpec(in *ToppingSpec, out *restaurant.ToppingSpec, s conversion.Scope) error {
 	out.Cost = in.Cost
+	out.PurchaseDate = in.PurchaseDate
 	return nil
 }
 
@@ -293,6 +286,7 @@ func Convert_v1alpha1_ToppingSpec_To_restaurant_ToppingSpec(in *ToppingSpec, out
 
 func autoConvert_restaurant_ToppingSpec_To_v1alpha1_ToppingSpec(in *restaurant.ToppingSpec, out *ToppingSpec, s conversion.Scope) error {
 	out.Cost = in.Cost
+	out.PurchaseDate = in.PurchaseDate
 	return nil
 }
 

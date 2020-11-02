@@ -39,6 +39,9 @@ type PizzaSpec struct {
 type PizzaStatus struct {
 	// cost is the cost of the whole pizza including all toppings.
 	Cost float64 `json:"cost,omitempty" protobuf:"bytes,1,opt,name=cost"`
+	PurchaseDate string `json:"purchasedate" protobuf:"bytes,2,name=purchasedate"`
+
+
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -66,6 +69,9 @@ type Topping struct {
 type ToppingSpec struct {
 	// cost is the cost of one instance of this topping.
 	Cost float64 `json:"cost" protobuf:"bytes,1,name=cost"`
+	PurchaseDate string `json:"purchasedate" protobuf:"bytes,2,name=purchasedate"`
+
+
 }
 
 // +genclient:nonNamespaced
