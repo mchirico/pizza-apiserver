@@ -40,6 +40,10 @@ type PizzaTopping struct {
 	Name string
 	// quantity is the number of how often the topping is put onto the pizza.
 	Quantity int
+	// date topping was purchased
+	DatePurchased string
+	// spoil date
+	SpoilDate string
 }
 
 type PizzaStatus struct {
