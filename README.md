@@ -30,3 +30,10 @@ go build -a -o pizza-apiserver
     --kubeconfig ~/.kube/config
 
 ```
+
+# Debugging
+
+```bash
+kubectl exec --stdin --tty pizza-apiserver-6886ff4688-wtp9k -c etcd  -- /bin/sh
+
+```
