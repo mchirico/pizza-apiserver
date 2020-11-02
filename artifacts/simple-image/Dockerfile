@@ -1,3 +1,3 @@
 FROM fedora
-ADD kube-sample-apiserver /
-ENTRYPOINT ["/kube-sample-apiserver"]
+ADD pizza-apiserver
+ENTRYPOINT ["/pizza-apiserver"]
