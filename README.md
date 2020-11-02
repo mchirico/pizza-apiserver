@@ -17,6 +17,19 @@ docker push quay.io/mchirico/pizza-apiserver:v1
 # Do this twice, namespace may not be loaded.
 k apply -f artifacts/deployment
 
+
+
+cd artifacts/example/
+ls topping* | xargs -n 1 kubectl create -f
+
+kubectl apply -f pizza-margherita.yaml
+
+# Now look at result 
+
+kubectl get pizza -o yaml margherita
+
+
+
 ```
 
 
@@ -41,6 +54,7 @@ kubectl exec --stdin --tty pizza-apiserver-6886ff4688-wtp9k -c apiserver  -- /bi
 yum update -y
 yum install etcd -y
 yum install -y procps
+yum install -y net-tools
 # If you need everything...
 yum group install "Development Tools" -y
 
