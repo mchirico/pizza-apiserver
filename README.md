@@ -2,6 +2,8 @@
 An aggregated custom API server
 
 
+You may need to run `go mod vendor`
+
 
 ```bash
 
