@@ -27,15 +27,15 @@ import (
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	genericoptions "k8s.io/apiserver/pkg/server/options"
 
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/admission/plugin/pizzatoppings"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/apiserver"
-	clientset "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned"
-	informers "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/externalversions"
+	"github.com/mchirico/pizza-apiserver/pkg/admission/plugin/pizzatoppings"
+	"github.com/mchirico/pizza-apiserver/pkg/admission/custominitializer"
+	"github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	"github.com/mchirico/pizza-apiserver/pkg/apiserver"
+	clientset "github.com/mchirico/pizza-apiserver/pkg/generated/clientset/versioned"
+	informers "github.com/mchirico/pizza-apiserver/pkg/generated/informers/externalversions"
 )
 
-const defaultEtcdPathPrefix = "/registry/pizza-apiserver.programming-kubernetes.info"
+const defaultEtcdPathPrefix = "/registry/pizza-apiserver.mchirico.info"
 
 type CustomServerOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions

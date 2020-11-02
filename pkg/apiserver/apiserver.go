@@ -25,11 +25,11 @@ import (
 	"k8s.io/apiserver/pkg/registry/rest"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/install"
-	customregistry "github.com/programming-kubernetes/pizza-apiserver/pkg/registry"
-	pizzastorage "github.com/programming-kubernetes/pizza-apiserver/pkg/registry/restaurant/pizza"
-	toppingstorage "github.com/programming-kubernetes/pizza-apiserver/pkg/registry/restaurant/topping"
+	"github.com/mchirico/pizza-apiserver/pkg/apis/restaurant"
+	"github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/install"
+	customregistry "github.com/mchirico/pizza-apiserver/pkg/registry"
+	pizzastorage "github.com/mchirico/pizza-apiserver/pkg/registry/restaurant/pizza"
+	toppingstorage "github.com/mchirico/pizza-apiserver/pkg/registry/restaurant/topping"
 )
 
 var (

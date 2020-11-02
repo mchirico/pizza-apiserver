@@ -20,8 +20,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apiserver/pkg/registry/generic"
 	genericregistry "k8s.io/apiserver/pkg/registry/generic/registry"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/registry"
+	"github.com/mchirico/pizza-apiserver/pkg/apis/restaurant"
+	"github.com/mchirico/pizza-apiserver/pkg/registry"
 )
 
 // NewREST returns a RESTStorage object that will work against API services.

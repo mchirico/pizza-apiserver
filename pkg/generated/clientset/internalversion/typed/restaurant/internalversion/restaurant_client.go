@@ -19,7 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion/scheme"
+	"github.com/mchirico/pizza-apiserver/pkg/generated/clientset/internalversion/scheme"
 	rest "k8s.io/client-go/rest"
 )
 
@@ -29,7 +29,7 @@ type RestaurantInterface interface {
 	ToppingsGetter
 }
 
-// RestaurantClient is used to interact with features provided by the restaurant.programming-kubernetes.info group.
+// RestaurantClient is used to interact with features provided by the restaurant.mchirico.info group.
 type RestaurantClient struct {
 	restClient rest.Interface
 }
@@ -75,8 +75,8 @@ func setConfigDefaults(config *rest.Config) error {
 	if config.UserAgent == "" {
 		config.UserAgent = rest.DefaultKubernetesUserAgent()
 	}
-	if config.GroupVersion == nil || config.GroupVersion.Group != scheme.Scheme.PrioritizedVersionsForGroup("restaurant.programming-kubernetes.info")[0].Group {
-		gv := scheme.Scheme.PrioritizedVersionsForGroup("restaurant.programming-kubernetes.info")[0]
+	if config.GroupVersion == nil || config.GroupVersion.Group != scheme.Scheme.PrioritizedVersionsForGroup("restaurant.mchirico.info")[0].Group {
+		gv := scheme.Scheme.PrioritizedVersionsForGroup("restaurant.mchirico.info")[0]
 		config.GroupVersion = &gv
 	}
 	config.NegotiatedSerializer = scheme.Codecs

@@ -4,6 +4,13 @@ An aggregated custom API server
 
 You may need to run `go mod vendor`
 
+```
+git tag -fa v0.0.1 -m "Update v1 tag"
+git push origin v0.0.1 --force
+
+```
+
+
 
 ```bash
 

@@ -19,7 +19,7 @@ limitations under the License.
 package fake
 
 import (
-	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	v1alpha1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -33,9 +33,9 @@ type FakeToppings struct {
 	Fake *FakeRestaurantV1alpha1
 }
 
-var toppingsResource = schema.GroupVersionResource{Group: "restaurant.programming-kubernetes.info", Version: "v1alpha1", Resource: "toppings"}
+var toppingsResource = schema.GroupVersionResource{Group: "restaurant.mchirico.info", Version: "v1alpha1", Resource: "toppings"}
 
-var toppingsKind = schema.GroupVersionKind{Group: "restaurant.programming-kubernetes.info", Version: "v1alpha1", Kind: "Topping"}
+var toppingsKind = schema.GroupVersionKind{Group: "restaurant.mchirico.info", Version: "v1alpha1", Kind: "Topping"}
 
 // Get takes name of the topping, and returns the corresponding topping object, and an error if there is any.
 func (c *FakeToppings) Get(name string, options v1.GetOptions) (result *v1alpha1.Topping, err error) {

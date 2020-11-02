@@ -19,8 +19,8 @@ limitations under the License.
 package v1beta1
 
 import (
-	v1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1beta1"
-	"github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/scheme"
+	v1beta1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1beta1"
+	"github.com/mchirico/pizza-apiserver/pkg/generated/clientset/versioned/scheme"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	rest "k8s.io/client-go/rest"
 )
@@ -30,7 +30,7 @@ type RestaurantV1beta1Interface interface {
 	PizzasGetter
 }
 
-// RestaurantV1beta1Client is used to interact with features provided by the restaurant.programming-kubernetes.info group.
+// RestaurantV1beta1Client is used to interact with features provided by the restaurant.mchirico.info group.
 type RestaurantV1beta1Client struct {
 	restClient rest.Interface
 }

@@ -19,7 +19,7 @@ limitations under the License.
 package fake
 
 import (
-	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	v1alpha1 "github.com/mchirico/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -34,9 +34,9 @@ type FakePizzas struct {
 	ns   string
 }
 
-var pizzasResource = schema.GroupVersionResource{Group: "restaurant.programming-kubernetes.info", Version: "v1alpha1", Resource: "pizzas"}
+var pizzasResource = schema.GroupVersionResource{Group: "restaurant.mchirico.info", Version: "v1alpha1", Resource: "pizzas"}
 
-var pizzasKind = schema.GroupVersionKind{Group: "restaurant.programming-kubernetes.info", Version: "v1alpha1", Kind: "Pizza"}
+var pizzasKind = schema.GroupVersionKind{Group: "restaurant.mchirico.info", Version: "v1alpha1", Kind: "Pizza"}
 
 // Get takes name of the pizza, and returns the corresponding pizza object, and an error if there is any.
 func (c *FakePizzas) Get(name string, options v1.GetOptions) (result *v1alpha1.Pizza, err error) {
